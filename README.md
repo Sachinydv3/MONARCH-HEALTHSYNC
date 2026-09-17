@@ -1,5 +1,5 @@
 <img width="1556" height="980" alt="Screenshot 2026-09-17 at 09 27 01" src="https://github.com/user-attachments/assets/672d2bb5-eaad-4586-9873-c384a39845bd" />
-<img width="1536" height="1024" alt="MahaSwasthya Setu_ Connected Healthcare Ecosystem" src="https://github.com/user-attachments/assets/a1f42e19-cd0e-4b93-8126-5c77c8803697" />
+
 <img width="1691" height="876" alt="Screenshot 2026-09-17 at 09 27 39" src="https://github.com/user-attachments/assets/d27e03c9-5e29-4fed-bc3b-c0f96896690c" />
 
 <img width="1630" height="958" alt="Screenshot 2026-09-17 at 09 27 18" src="https://github.com/user-attachments/assets/0a8f51a2-49be-47de-9cb9-e31725644fe6" />
