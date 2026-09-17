@@ -1,0 +1,143 @@
+{
+  "registration": {
+    "header": {
+      "title": "Patient Registration",
+      "languageSelector": "Language"
+    },
+    "steps": {
+      "basicInfo": "Basic Info",
+      "healthInfo": "Health Info",
+      "documents": "Documents",
+      "review": "Review"
+    },
+    "sections": {
+      "basicInformation": "Basic Information"
+    },
+    "fields": {
+      "fullName": "Full Name *",
+      "fullNamePlaceholder": "Enter full name",
+      "dob": "Age / Date of Birth *",
+      "gender": "Gender *",
+      "mobileNumber": "Mobile Number",
+      "mobileNumberPlaceholder": "98765 43210",
+      "villageAddress": "Village / Address",
+      "villageAddressPlaceholder": "Kondgaon, Pune"
+    },
+    "options": {
+      "female": "Female",
+      "male": "Male",
+      "other": "Other"
+    },
+    "actions": {
+      "next": "Next →",
+      "back": "Back",
+      "confirm": "Confirm Registration"
+    },
+    "validation": {
+      "required": "Please enter patient's full name.",
+      "invalidDob": "Please enter a valid date of birth.",
+      "invalidPhone": "Please enter a valid mobile number.",
+      "missingGender": "Please select gender."
+    }
+  },
+  "home": {
+    "greeting": "Namaste!",
+    "subtitle": "How can we help you today?",
+    "bookAppointment": "Book Appointment",
+    "bookAppointmentSubtitle": "Find and book at nearby centre",
+    "viewRecords": "View Health Records",
+    "viewRecordsSubtitle": "Your medical history",
+    "medicineAvailability": "Medicine Availability",
+    "medicineAvailabilitySubtitle": "Check stock at nearby facilities",
+    "trackReports": "Track Reports",
+    "trackReportsSubtitle": "View diagnostic test results",
+    "reminders": "Follow-up Reminders",
+    "remindersSubtitle": "Never miss your care",
+    "navHome": "Home",
+    "navRecords": "Records",
+    "navAppointments": "Appointments",
+    "navProfile": "Profile"
+  },
+  "landing": {
+    "nav": {
+      "about": "About",
+      "government": "Government",
+      "adminLogin": "Admin Login"
+    },
+    "hero": {
+      "badge": "Digital Health Revolution",
+      "titlePart1": "Connected Care.",
+      "titlePart2": "Closer to People.",
+      "description": "Empowering Maharashtra's healthcare network through seamless digital integration. Bridging the gap between rural patients, frontline workers, and specialist care.",
+      "patientApp": "Experience Patient App",
+      "workerPortal": "Frontline Worker Portal",
+      "stats": {
+        "patients": "Patients Registered",
+        "success": "Referral Success",
+        "waitTime": "Avg. Wait Time"
+      }
+    },
+    "heroCards": {
+      "smartScreening": {
+        "title": "Smart Screening",
+        "description": "AI-driven triage for faster care."
+      },
+      "universalId": {
+        "title": "Universal ID",
+        "description": "ABDM compliant health records."
+      },
+      "mobileFirst": {
+        "title": "Mobile First",
+        "description": "Designed for the field."
+      },
+      "districtAdmin": {
+        "title": "District Admin",
+        "description": "Real-time network monitoring."
+      }
+    },
+    "features": {
+      "title": "Built for the Frontline",
+      "description": "A comprehensive digital ecosystem that ensures no patient is left behind, regardless of their location or connectivity.",
+      "cards": {
+        "peopleFirst": {
+          "title": "People First",
+          "description": "Multilingual interfaces and intuitive design for rural health workers and patients."
+        },
+        "secureTrusted": {
+          "title": "Secure & Trusted",
+          "description": "Government-grade security with consent-based data sharing and FHIR standards."
+        },
+        "dataDriven": {
+          "title": "Data Driven",
+          "description": "Real-time analytics to identify health trends and optimize resource allocation."
+        }
+      }
+    },
+    "footer": {
+      "description": "A digital public health initiative for the Government of Maharashtra. Creating a healthier, stronger, and more connected tomorrow for every citizen.",
+      "badges": {
+        "abdm": "ABDM Ready",
+        "fhir": "FHIR Compliant",
+        "govt": "Govt of MH"
+      },
+      "cta": {
+        "title": "Ready to see it in action?",
+        "patientExp": "Launch Patient Experience",
+        "workerPortal": "Launch Worker Portal"
+      }
+    },
+    "emergency": {
+      "title": "Emergency Support",
+      "description": "Immediate medical assistance for critical and chronic conditions.",
+      "chronicSupport": {
+        "title": "Chronic Care SOS",
+        "description": "Dedicated support for patients with chronic illnesses needing urgent attention."
+      },
+      "medicalEmergency": {
+        "title": "Medical Emergency",
+        "description": "Immediate access to emergency medical services and critical care support."
+      },
+      "buttonText": "Get Immediate Help"
+    }
+  }
+}
