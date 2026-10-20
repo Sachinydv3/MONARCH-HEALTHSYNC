@@ -7,6 +7,7 @@ export interface User {
   name: string;
   facilityId?: string;
   token: string;
+  preferredLanguage: string;
 }
 
 // --- Patient Service ---
@@ -24,6 +25,16 @@ export interface Patient {
   state: string;
   createdAt: string;
   updatedAt: string;
+  qrCodeToken?: string;
+  consentPolicies: ConsentPolicy[];
+}
+
+export interface ConsentPolicy {
+  id: string;
+  providerId: string;
+  allowedScopes: string[];
+  expiresAt: string;
+  status: 'ACTIVE' | 'REVOKED';
 }
 
 // --- Encounter Service ---
@@ -51,6 +62,18 @@ export interface Encounter {
 
 // --- Triage Service ---
 export type TriageLevel = 'ROUTINE' | 'URGENT' | 'EMERGENCY';
+
+export interface TriageSession {
+  id: string;
+  patientId: string;
+  status: 'IN_PROGRESS' | 'COMPLETED';
+  conversationalHistory: { role: 'user' | 'assistant'; content: string; timestamp: string }[];
+  detectedSymptoms: string[];
+  riskScore: number;
+  triageLevel: TriageLevel;
+  suggestedRouting: 'PHC' | 'SPECIALIST' | 'EMERGENCY_ROOM';
+  createdAt: string;
+}
 
 export interface Triage {
   id: string;
@@ -95,6 +118,8 @@ export interface Consultation {
   startedAt: string;
   endedAt?: string;
   sessionToken: string;
+  aiScribeNotes?: string;
+  liveVitals?: Vitals;
 }
 
 // --- Diagnostics Service ---
@@ -115,6 +140,7 @@ export interface Prescription {
   doctorId: string;
   medications: Medication[];
   issuedAt: string;
+  fulfillmentStatus: 'PENDING' | 'PARTIAL' | 'COMPLETED';
 }
 
 export interface Medication {
@@ -122,15 +148,26 @@ export interface Medication {
   dosage: string;
   frequency: string;
   duration: string;
+  availabilityStatus?: 'IN_STOCK' | 'OUT_OF_STOCK' | 'LIMITED';
+  nearbyPharmacies?: string[];
 }
 
-// --- Notification Service ---
-export interface Notification {
+// --- Preventive Care Service ---
+export interface HealthMetric {
   id: string;
-  userId: string;
-  title: string;
-  message: string;
-  type: 'SMS' | 'PUSH' | 'IVR';
-  status: 'SENT' | 'DELIVERED' | 'FAILED';
+  patientId: string;
+  type: 'GLUCOSE' | 'BP' | 'WEIGHT' | 'SPO2' | 'HEART_RATE';
+  value: number;
+  unit: string;
   timestamp: string;
+}
+
+export interface CareNudge {
+  id: string;
+  patientId: string;
+  type: 'SCREENING' | 'MEDICATION' | 'FOLLOW_UP';
+  message: string;
+  priority: 'LOW' | 'MEDIUM' | 'HIGH';
+  scheduledDate: string;
+  status: 'PENDING' | 'COMPLETED' | 'IGNORED';
 }

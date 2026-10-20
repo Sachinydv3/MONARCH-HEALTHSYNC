@@ -4,21 +4,33 @@
 
 <img width="1630" height="958" alt="Screenshot 2026-09-17 at 09 27 18" src="https://github.com/user-attachments/assets/0a8f51a2-49be-47de-9cb9-e31725644fe6" />
 # Monarch HealthSync
-Monarch HealthSync is a comprehensive healthcare management system designed to streamline patient onboarding, clinical triage, and teleconsultation. Built with a focus on accessibility and scalability, it provides a seamless bridge between patients and healthcare providers.
+
+Monarch HealthSync is a next-generation, patient-centric healthcare management ecosystem designed to bridge the gap between rural populations and specialized clinical care. It integrates AI-driven triage, HD teleconsultations, and secure digital health records to provide a seamless continuum of care.
 
 ## 🚀 Features
 
-- **Patient Onboarding & Registration**: A multi-step registration flow including basic info, health history, document uploads, and clinical screening.
-- **Intelligent Triage**: Integrated screening and triage screens to categorize patient needs and urgency.
-- **Teleconsultation Suite**: A full-featured video consultation interface with real-time call controls, connection status monitoring, and consultation summaries.
-- **Care Plan Management**: Dedicated screens for creating and monitoring patient-specific care plans.
-- **District Dashboard**: A high-level clinical dashboard for monitoring health metrics at a district level.
-- **Multi-Language Support**: Built-in internationalization (i18n) supporting **English**, **Hindi**, and **Marathi** to ensure accessibility for diverse populations.
+### 🤖 AI-Powered Clinical Intelligence
+- **AI Symptom Screening & Triage**: Conversational LLM-driven intake that performs risk stratification (Routine, Urgent, Emergency) and autonomously routes patients to the appropriate care level.
+- **Ambient Clinical Scribe**: AI-powered real-time transcription and structured SOAP note generation during teleconsultations.
+- **Predictive Wellness**: ML-driven health nudges and relapse analytics for chronic disease management.
+
+### 🏥 Virtual Care & Coordination
+- **HD Teleconsultation Suite**: Low-latency video interface featuring real-time vitals overlay (IoT integration) and specialist matching.
+- **Smart Scheduling & Referrals**: Automated appointment booking with a visual "Referral Loop" tracker to ensure continuity between GPs and specialists.
+- **Integrated Pharmacy & Lab Coordination**: Real-time medicine availability tracking and electronic diagnostic ordering with status synchronization.
+
+### 🔐 Patient Data Sovereignty
+- **Digital Health Locker**: FHIR-compliant patient records with a secure, patient-controlled consent matrix.
+- **QR-Enabled Access**: Encrypted, time-bound QR codes for emergency health passport access.
+- **Zero-Trust Privacy**: Granular permissions allowing patients to control exactly which provider sees what data and for how long.
+
+### 🌍 Accessibility & Equity
+- **Multilingual Ecosystem**: Native support for **English**, **Hindi**, and **Marathi** to ensure care is accessible to diverse linguistic populations.
+- **Offline-First Capability**: Built-in synchronization services to ensure critical health data is available in low-connectivity regions.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [React](https://reactjs.org/) (v18)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Frontend**: [React](https://reactjs.org/) (v18) with [TypeScript](https://www.typescriptlang.org/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Internationalization**: [i18next](https://www.i18next.com/)
@@ -27,37 +39,31 @@ Monarch HealthSync is a comprehensive healthcare management system designed to s
 ## 🏁 Getting Started
 
 ### Prerequisites
-
 - Node.js (v18 or later)
 - npm
 
 ### Installation
-
 1. Clone the repository:
    ```bash
    git clone <repository-url>
    cd monarch-healthsync
    ```
-
 2. Install dependencies:
    ```bash
    npm install
    ```
 
 ### Development
-
 To start the development server:
 ```bash
 npm run dev
 ```
 
 ### Build
-
 To create a production-ready bundle:
 ```bash
 npm run build
 ```
-
 To preview the production build locally:
 ```bash
 npm run preview
@@ -67,15 +73,15 @@ npm run preview
 
 ```text
 src/
-├── components/    # Feature-based UI components (Registration, Teleconsultation, UI, etc.)
-├── hooks/          # Custom React hooks for business logic
+├── components/    # Feature-based UI components (Triage, Telecon, Records, etc.)
+├── hooks/          # Custom React hooks for clinical logic
 ├── i18n/           # Translation files and i18n configuration
-├── Pages/          # High-level page entry points
-├── services/       # Business logic and API communication (Core, API, Sync)
-├── types/          # Centralized TypeScript definitions
+├── Pages/          # High-level page entry points (The core application modules)
+├── services/       # Business logic, API communication, and Sync services
+├── types/          # Centralized TypeScript definitions (FHIR-aligned)
 └── utils/          # Shared utility functions
 ```
 
 ## 🧪 Development Note
 
-The project currently utilizes a **Mock Backend** (`src/services/api/mockBackend.ts`) to enable rapid frontend development and prototyping without requiring a live server.
+The project currently utilizes a **Mock Backend** (`src/services/api/mockBackend.ts`) to enable rapid frontend development and prototyping. This layer can be replaced with a live FHIR-compliant server for production deployment.
