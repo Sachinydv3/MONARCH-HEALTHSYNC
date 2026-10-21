@@ -8,12 +8,16 @@ import {
   User,
   Search,
   Globe,
-  ChevronRight
+  ChevronRight,
+  Activity,
+  LayoutDashboard
 } from 'lucide-react';
 import { PatientHomeScreen } from '../components/home/PatientHomeScreen';
 import { PatientRegistrationScreen } from '../components/registration/PatientRegistrationScreen';
 import { TeleconsultationScreen } from '../components/teleconsultation/TeleconsultationScreen';
 import { DistrictDashboard } from '../components/dashboard/DistrictDashboard';
+import { CarePlanScreen } from '../components/careplan/CarePlanScreen';
+import { HospitalIntelligenceDashboard } from '../components/admin/hospital-intelligence/HospitalIntelligenceDashboard';
 import { MobileFrame } from '../components/layout/MobileFrame';
 import { cn } from '../utils/cn';
 
@@ -39,18 +43,18 @@ export const PrototypeGallery: React.FC = () => {
             <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">M</div>
             <div>
               <h1 className="text-xl font-black text-[#0B2A6F] tracking-tight">MONARCH HEALTHSYNC</h1>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-widest">Connected Care. Healthier Maharashtra.</p>
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-widest">Connected Care. Healthier India.</p>
             </div>
           </div>
 
           <div className="text-center">
             <h2 className="text-2xl font-bold text-slate-800">Sample Working Prototype</h2>
-            <p className="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">DIGITAL HEALTHCARE FOR A STRONGER MAHARASHTRA</p>
+            <p className="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">DIGITAL HEALTHCARE FOR A STRONGER INDIA</p>
           </div>
 
           <div className="text-right flex items-center gap-4">
             <div className="text-right">
-              <p className="font-bold text-slate-900 text-sm">Government of Maharashtra</p>
+              <p className="font-bold text-slate-900 text-sm">Government of India</p>
               <p className="text-[10px] text-slate-500 font-medium italic">For People | For Better Healthcare | For a Healthier Tomorrow</p>
             </div>
             <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 border border-slate-200">
@@ -62,7 +66,7 @@ export const PrototypeGallery: React.FC = () => {
 
       {/* MAIN PROTOTYPE AREA */}
       <main className="max-w-[1600px] mx-auto px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
           {/* Screen 1: Patient Home */}
           <div className="flex flex-col items-center gap-6">
@@ -92,7 +96,21 @@ export const PrototypeGallery: React.FC = () => {
             </div>
           </div>
 
-          {/* Screen 3: Teleconsultation */}
+          {/* Screen 3: Remote Monitoring */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="bg-white p-4 rounded-[3rem] shadow-soft border border-slate-100 w-full flex justify-center">
+              <MobileFrame>
+                <CarePlanScreen patientName="Rajesh Kumar" onBack={() => {}} />
+              </MobileFrame>
+            </div>
+            <div className="text-center space-y-1">
+              <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto font-bold text-sm shadow-md">3</div>
+              <h3 className="font-bold text-slate-900">Chronic Care Monitoring</h3>
+              <p className="text-xs text-slate-500">Remote vitals & targets tracking</p>
+            </div>
+          </div>
+
+          {/* Screen 4: Teleconsultation */}
           <div className="flex flex-col items-center gap-6">
             <div className="bg-white p-4 rounded-[3rem] shadow-soft border border-slate-100 w-full flex justify-center">
               <MobileFrame>
@@ -100,26 +118,39 @@ export const PrototypeGallery: React.FC = () => {
               </MobileFrame>
             </div>
             <div className="text-center space-y-1">
-              <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto font-bold text-sm shadow-md">3</div>
+              <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto font-bold text-sm shadow-md">4</div>
               <h3 className="font-bold text-slate-900">Specialist Teleconsultation</h3>
               <p className="text-xs text-slate-500">Secure video consultation</p>
             </div>
           </div>
 
-          {/* Screen 4: Dashboard */}
-          <div className="flex flex-col items-center gap-6 lg:col-span-1">
+          {/* Screen 5: Hospital Intelligence */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="bg-white p-4 rounded-[3rem] shadow-soft border border-slate-100 w-full overflow-hidden h-[640px]">
+              <div className="w-full h-full overflow-hidden rounded-2xl border border-slate-100 p-4">
+                <HospitalIntelligenceDashboard />
+              </div>
+            </div>
+            <div className="text-center space-y-1">
+              <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto font-bold text-sm shadow-md">5</div>
+              <h3 className="font-bold text-slate-900">Hospital Intelligence</h3>
+              <p className="text-xs text-slate-500">Operational bottlenecks & KPIs</p>
+            </div>
+          </div>
+
+          {/* Screen 6: District Dashboard */}
+          <div className="flex flex-col items-center gap-6">
             <div className="bg-white p-4 rounded-[3rem] shadow-soft border border-slate-100 w-full overflow-hidden h-[640px]">
               <div className="w-full h-full overflow-hidden rounded-2xl border border-slate-100">
                 <DistrictDashboard />
               </div>
             </div>
             <div className="text-center space-y-1">
-              <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto font-bold text-sm shadow-md">4</div>
-              <h3 className="font-bold text-slate-900">Maharashtra District Dashboard</h3>
+              <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto font-bold text-sm shadow-md">6</div>
+              <h3 className="font-bold text-slate-900">India District Dashboard</h3>
               <p className="text-xs text-slate-500">Government monitoring view</p>
             </div>
           </div>
-
         </div>
       </main>
 
@@ -146,7 +177,7 @@ export const PrototypeGallery: React.FC = () => {
           <div className="hidden md:block w-px h-12 bg-slate-200" />
           <BenefitBlock
             icon={Leaf}
-            title="Stronger Maharashtra"
+            title="Stronger India"
             subtitle="Equitable Healthcare for All."
           />
         </div>

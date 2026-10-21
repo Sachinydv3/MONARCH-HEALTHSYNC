@@ -64,9 +64,10 @@ const SymptomTriagePage = () => {
             </div>
             <div className="p-4 border-t flex gap-2">
               <Input
+                label="Symptom Description"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+                onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleSend()}
                 placeholder={t('triage.input_placeholder', 'Describe your symptoms...')}
               />
               <Button onClick={handleSend}>{t('triage.send', 'Send')}</Button>

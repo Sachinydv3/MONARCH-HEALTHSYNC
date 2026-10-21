@@ -13,6 +13,7 @@ class ApiGateway {
       name: 'Sita Worker',
       token: 'mock_jwt_token_abc123',
       facilityId: 'PHC_001',
+      preferredLanguage: 'en',
     };
     return this.currentUser;
   }

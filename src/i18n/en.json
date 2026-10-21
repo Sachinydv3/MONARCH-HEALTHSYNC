@@ -68,7 +68,7 @@
       "badge": "Digital Health Revolution",
       "titlePart1": "Connected Care.",
       "titlePart2": "Closer to People.",
-      "description": "Empowering Maharashtra's healthcare network through seamless digital integration. Bridging the gap between rural patients, frontline workers, and specialist care.",
+      "description": "Empowering India's healthcare network through seamless digital integration. Bridging the gap between rural patients, frontline workers, and specialist care.",
       "patientApp": "Experience Patient App",
       "workerPortal": "Frontline Worker Portal",
       "stats": {
@@ -114,11 +114,11 @@
       }
     },
     "footer": {
-      "description": "A digital public health initiative for the Government of Maharashtra. Creating a healthier, stronger, and more connected tomorrow for every citizen.",
+      "description": "A digital public health initiative for the Government of India. Creating a healthier, stronger, and more connected tomorrow for every citizen.",
       "badges": {
         "abdm": "ABDM Ready",
         "fhir": "FHIR Compliant",
-        "govt": "Govt of MH"
+        "govt": "Govt of India"
       },
       "cta": {
         "title": "Ready to see it in action?",

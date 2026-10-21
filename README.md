@@ -9,15 +9,22 @@ Monarch HealthSync is a next-generation, patient-centric healthcare management e
 
 ## 🚀 Features
 
-### 🤖 AI-Powered Clinical Intelligence
+### 🤖 Advanced Clinical AI & Intelligence
+- **Predictive Health Copilot**: A RAG-powered AI assistant that analyzes patient records to provide grounded answers, detect clinical trends, and generate **Predictive Insights** (e.g., progression risks, drug interactions) with evidence-based citations.
+- **Hospital Intelligence Dashboard**: Operational visibility for administrators to track appointment volume, wait times, missed visits, and clinical pipeline bottlenecks.
 - **AI Symptom Screening & Triage**: Conversational LLM-driven intake that performs risk stratification (Routine, Urgent, Emergency) and autonomously routes patients to the appropriate care level.
 - **Ambient Clinical Scribe**: AI-powered real-time transcription and structured SOAP note generation during teleconsultations.
-- **Predictive Wellness**: ML-driven health nudges and relapse analytics for chronic disease management.
 
 ### 🏥 Virtual Care & Coordination
+- **Intelligent Referral Network**: A closed-loop coordination system that routes patients between PHCs and specialists, attaches relevant records, and tracks the referral lifecycle to prevent patient loss.
 - **HD Teleconsultation Suite**: Low-latency video interface featuring real-time vitals overlay (IoT integration) and specialist matching.
-- **Smart Scheduling & Referrals**: Automated appointment booking with a visual "Referral Loop" tracker to ensure continuity between GPs and specialists.
-- **Integrated Pharmacy & Lab Coordination**: Real-time medicine availability tracking and electronic diagnostic ordering with status synchronization.
+- **Smart Scheduling**: Automated appointment booking with synchronized status tracking between providers.
+- **Integrated Pharmacy & Lab Coordination**: Real-time medicine availability tracking and electronic diagnostic ordering.
+
+### 🌿 Personalized Wellness & Chronic Care
+- **Remote Health Monitoring**: Patient-entered tracking for BP, Glucose, and Weight with clinician-defined targets and automated escalation for warning patterns.
+- **Wellness Center**: A personalized hub for guided well-being assessments, mental health screenings (PHQ-9), and self-guided educational resources.
+- **Guided Care Plans**: Dynamic recovery roadmaps with clinician-approved goals and progress tracking.
 
 ### 🔐 Patient Data Sovereignty
 - **Digital Health Locker**: FHIR-compliant patient records with a secure, patient-controlled consent matrix.

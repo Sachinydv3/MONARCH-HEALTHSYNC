@@ -16,7 +16,7 @@ const HealthRecordsPage = () => {
     village: 'Khed',
     taluka: 'Khed',
     district: 'Pune',
-    state: 'Maharashtra',
+    state: 'India',
     createdAt: '2023-01-01',
     updatedAt: '2024-10-20',
     qrCodeToken: 'SECURE_JWT_TOKEN_XYZ_123',
@@ -96,7 +96,8 @@ const HealthRecordsPage = () => {
       <Card className="p-6">
         <h3 className="text-xl font-semibold mb-4">{t('records.consent_title', 'Data Access Consent')}</h3>
         <div className="space-y-3">
-          {mockPatient.consentPolicies.map(policy => (
+          {mockPatient.consentPolicies.map((policy: any) => (
+
             <div key={policy.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border">
               <div className="flex gap-3 items-center">
                 <div className="w-8 h-8 rounded-full bg-slate-200" />

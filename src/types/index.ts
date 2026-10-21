@@ -10,6 +10,14 @@ export interface User {
   preferredLanguage: string;
 }
 
+export interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+}
+
 // --- Patient Service ---
 export interface Patient {
   id: string;
@@ -29,6 +37,17 @@ export interface Patient {
   consentPolicies: ConsentPolicy[];
 }
 
+export type AccessLevel = 'READ_ONLY' | 'FULL_ACCESS' | 'EMERGENCY_ONLY';
+
+export interface FamilyMember {
+  id: string;
+  patientId: string;
+  fullName: string;
+  relation: string;
+  accessLevel: AccessLevel;
+  contactNumber: string;
+}
+
 export interface ConsentPolicy {
   id: string;
   providerId: string;
@@ -37,7 +56,31 @@ export interface ConsentPolicy {
   status: 'ACTIVE' | 'REVOKED';
 }
 
-// --- Encounter Service ---
+// --- Health Hub Domain ---
+export type RecordType = 'LAB' | 'IMAGING' | 'CLINICAL' | 'PRESCRIPTION' | 'METRIC';
+
+export interface MedicalRecord {
+  id: string;
+  patientId: string;
+  type: RecordType;
+  date: string;
+  provider: string;
+  summary: string;
+  details: any;
+  category: string;
+}
+
+export interface HealthDocument {
+  id: string;
+  patientId: string;
+  url: string;
+  fileName: string;
+  category: string;
+  uploadDate: string;
+  aiSummaryEn: string;
+  aiSummaryHi: string;
+}
+
 export interface Vitals {
   bloodPressure: string;
   pulseRate: number;
@@ -108,6 +151,16 @@ export interface Appointment {
   status: 'SCHEDULED' | 'COMPLETED' | 'CANCELLED';
 }
 
+export type ConsultationType = 'VIDEO' | 'IN_PERSON' | 'CHAT';
+
+export interface AppointmentRequest {
+  patientId: string;
+  doctorId: string;
+  slotId: string;
+  type: ConsultationType;
+  reason: string;
+}
+
 // --- Teleconsultation Service ---
 export interface Consultation {
   id: string;
@@ -122,7 +175,33 @@ export interface Consultation {
   liveVitals?: Vitals;
 }
 
-// --- Diagnostics Service ---
+// --- Provider Domain ---
+export interface Provider {
+  id: string;
+  name: string;
+  specialty: string;
+  location: Address;
+  languages: string[];
+  availability: Availability;
+  rating: number;
+  experienceYears: number;
+  consultationFee: number;
+}
+
+export interface Slot {
+  id: string;
+  startTime: string;
+  endTime: string;
+  status: 'AVAILABLE' | 'BOOKED';
+}
+
+export interface Availability {
+  weeklySlots: {
+    day: string;
+    slots: Slot[];
+  }[];
+}
+
 export interface DiagnosticOrder {
   id: string;
   patientId: string;

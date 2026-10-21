@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../ui/Button';
 import { useTranslation } from 'react-i18next';
-import { User, MapPin, AlertCircle, ChevronRight, Star } from 'lucide-react';
+import { User, MapPin, AlertCircle, ChevronRight, Star, FileText, ClipboardList, Search } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 interface ReferralScreenProps {
@@ -19,6 +19,7 @@ export const ReferralScreen: React.FC<ReferralScreenProps> = ({
   const [specialist, setSpecialist] = useState('doc-1');
   const [facility, setFacility] = useState('fac-1');
   const [urgency, setUrgency] = useState('NORMAL');
+  const [selectedRecords, setSelectedRecords] = useState<string[]>([]);
 
   const specialists = [
     { id: 'doc-1', name: 'Dr. Priya Sharma', spec: 'Cardiology Specialist', rating: '4.9', availability: 'Available Today' },
@@ -27,10 +28,22 @@ export const ReferralScreen: React.FC<ReferralScreenProps> = ({
   ];
 
   const facilities = [
-    { id: 'fac-1', name: 'Pune District Hospital', distance: '4.2 km' },
-    { id: 'fac-2', name: 'Kondgaon Rural Health Centre', distance: '1.1 km' },
-    { id: 'fac-3', name: 'Maharashtra State Medical College', distance: '12.5 km' },
+    { id: 'fac-1', name: 'Pune District Hospital', distance: '4.2 km', services: ['MRI', 'CT Scan', 'Echo'] },
+    { id: 'fac-2', name: 'Kondgaon Rural Health Centre', distance: '1.1 km', services: ['X-Ray', 'Blood Lab'] },
+    { id: 'fac-3', name: 'National State Medical College', distance: '12.5 km', services: ['Full Diagnostic Suite'] },
   ];
+
+  const availableRecords = [
+    { id: 'rec-1', name: 'Recent Blood Work (Oct 20)', type: 'Lab' },
+    { id: 'rec-2', name: 'Chest X-Ray (Sept 15)', type: 'Imaging' },
+    { id: 'rec-3', name: 'Clinical Note - Primary Care', type: 'Note' },
+  ];
+
+  const toggleRecord = (id: string) => {
+    setSelectedRecords(prev =>
+      prev.includes(id) ? prev.filter(rid => rid !== id) : [...prev, id]
+    );
+  };
 
   const handleRefer = () => {
     onComplete({
@@ -38,6 +51,8 @@ export const ReferralScreen: React.FC<ReferralScreenProps> = ({
       facilityId: facility,
       urgency,
       patientName,
+      attachedRecords: selectedRecords,
+      timestamp: new Date().toISOString(),
     });
   };
 
@@ -48,7 +63,7 @@ export const ReferralScreen: React.FC<ReferralScreenProps> = ({
           <button onClick={onBack} className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-600">
             <span className="text-xl">←</span>
           </button>
-          <h1 className="text-lg font-bold text-slate-900">Specialist Referral</h1>
+          <h1 className="text-lg font-bold text-slate-900">Intelligent Referral</h1>
         </div>
         <div className="flex items-center gap-2 px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">
           <span>A अ</span>
@@ -120,10 +135,49 @@ export const ReferralScreen: React.FC<ReferralScreenProps> = ({
                     )}>
                       <MapPin size={16} />
                     </div>
-                    <p className="font-bold text-slate-900">{fac.name}</p>
+                    <div className="text-left">
+                      <p className="font-bold text-slate-900">{fac.name}</p>
+                      <p className="text-[10px] text-slate-500">{fac.services.join(' • ')}</p>
+                    </div>
                   </div>
                   <span className="text-xs font-medium text-slate-400">{fac.distance}</span>
                 </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Document Attachment */}
+          <div className="bg-white rounded-3xl p-6 shadow-soft border border-slate-100 space-y-4">
+            <div className="flex items-center gap-2 mb-2">
+              <FileText size={20} className="text-primary" />
+              <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Attach Records</h3>
+            </div>
+            <div className="space-y-2">
+              {availableRecords.map((rec) => (
+                <div
+                  key={rec.id}
+                  onClick={() => toggleRecord(rec.id)}
+                  className={cn(
+                    "flex items-center justify-between p-3 rounded-xl border cursor-pointer transition-all active:scale-95",
+                    selectedRecords.includes(rec.id) ? "border-primary bg-primary-light" : "border-slate-100 bg-white"
+                  )}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={cn(
+                      "p-2 rounded-lg",
+                      selectedRecords.includes(rec.id) ? "bg-primary text-white" : "bg-slate-100 text-slate-400"
+                    )}>
+                      <FileText size={14} />
+                    </div>
+                    <p className="text-xs font-medium text-slate-700">{rec.name}</p>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={selectedRecords.includes(rec.id)}
+                    onChange={() => {}}
+                    className="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary"
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -156,7 +210,7 @@ export const ReferralScreen: React.FC<ReferralScreenProps> = ({
 
       <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-surface via-surface to-transparent">
         <Button className="w-full" size="lg" onClick={handleRefer}>
-          Create Referral →
+          Coordinate Referral →
         </Button>
       </div>
     </div>

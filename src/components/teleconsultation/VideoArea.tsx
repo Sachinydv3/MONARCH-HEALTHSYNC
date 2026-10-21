@@ -50,8 +50,8 @@ export const VideoArea: React.FC<VideoAreaProps> = ({
         <div className="bg-primary/20 backdrop-blur-md border border-primary/30 px-3 py-2 rounded-xl">
           <p className="text-white text-[10px] font-medium leading-tight max-w-[120px]">
             Care for a <br />
-            <span className="text-primary-light font-bold text-xs">Healthier</span> <br />
-            Maharashtra
+            <span className="text-blue-400 font-bold text-xs">Healthier</span> <br />
+            India
           </p>
         </div>
       </div>

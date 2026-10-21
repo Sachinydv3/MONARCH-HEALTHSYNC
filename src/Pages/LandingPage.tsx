@@ -16,12 +16,12 @@ import { Chatbot } from '../components/ui/Chatbot';
 import { cn } from '../utils/cn';
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
-  <div className="p-8 bg-white rounded-3xl border border-slate-100 shadow-soft hover:shadow-md transition-all group">
-    <div className="w-14 h-14 bg-primary-light text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-      <Icon size={28} />
+  <div className="p-6 bg-white rounded-3xl border border-slate-100 shadow-soft hover:shadow-md transition-all group">
+    <div className="w-12 h-12 bg-primary-light text-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <Icon size={24} />
     </div>
-    <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
-    <p className="text-slate-500 leading-relaxed">{description}</p>
+    <h3 className="text-lg font-bold text-slate-900 mb-2">{title}</h3>
+    <p className="text-slate-500 leading-relaxed text-sm">{description}</p>
   </div>
 );
 
@@ -108,45 +108,36 @@ export const LandingPage: React.FC<{ onEnterApp: (role: 'patient' | 'worker' | '
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative max-w-md mx-auto">
           <div className="absolute -inset-4 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-          <div className="relative grid grid-cols-2 gap-4">
-            <div className="absolute -z-10 top-0 right-0 w-full h-full opacity-20">
-               <img
-                 src="/assets/hero-image.png"
-                 alt="Healthcare Professional"
-                 className="w-full h-full object-cover rounded-full"
-               />
-            </div>
-            <div className="space-y-4 pt-12">
-              <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-left-8 duration-700">
-                <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-                  <HeartPulse size={24} />
+          <div className="relative grid grid-cols-1 gap-4">
+            <div className="space-y-4">
+              <div className="bg-white p-5 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-left-8 duration-700">
+                <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-3">
+                  <HeartPulse size={20} />
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2">{t('landing.heroCards.smartScreening.title')}</h4>
+                <h4 className="font-bold text-slate-900 mb-1">{t('landing.heroCards.smartScreening.title')}</h4>
                 <p className="text-xs text-slate-500">{t('landing.heroCards.smartScreening.description')}</p>
               </div>
-              <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-left-8 duration-1000">
-                <div className="w-10 h-10 bg-teal-100 text-teal-600 rounded-lg flex items-center justify-center mb-4">
-                  <Globe size={24} />
+              <div className="bg-white p-5 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-left-8 duration-1000">
+                <div className="w-10 h-10 bg-teal-100 text-teal-600 rounded-lg flex items-center justify-center mb-3">
+                  <Globe size={20} />
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2">{t('landing.heroCards.universalId.title')}</h4>
+                <h4 className="font-bold text-slate-900 mb-1">{t('landing.heroCards.universalId.title')}</h4>
                 <p className="text-xs text-slate-500">{t('landing.heroCards.universalId.description')}</p>
               </div>
-            </div>
-            <div className="space-y-4">
-              <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-right-8 duration-700">
-                <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
-                  <Smartphone size={24} />
+              <div className="bg-white p-5 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-right-8 duration-700">
+                <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-3">
+                  <Smartphone size={20} />
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2">{t('landing.heroCards.mobileFirst.title')}</h4>
+                <h4 className="font-bold text-slate-900 mb-1">{t('landing.heroCards.mobileFirst.title')}</h4>
                 <p className="text-xs text-slate-500">{t('landing.heroCards.mobileFirst.description')}</p>
               </div>
-              <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-right-8 duration-1000">
-                <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
-                  <LayoutDashboard size={24} />
+              <div className="bg-white p-5 rounded-3xl shadow-xl border border-slate-100 animate-in slide-in-from-right-8 duration-1000">
+                <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-3">
+                  <LayoutDashboard size={20} />
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2">{t('landing.heroCards.districtAdmin.title')}</h4>
+                <h4 className="font-bold text-slate-900 mb-1">{t('landing.heroCards.districtAdmin.title')}</h4>
                 <p className="text-xs text-slate-500">{t('landing.heroCards.districtAdmin.description')}</p>
               </div>
             </div>
@@ -207,7 +198,7 @@ export const LandingPage: React.FC<{ onEnterApp: (role: 'patient' | 'worker' | '
             {t('landing.features.description')}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex flex-col gap-6 max-w-md mx-auto overflow-y-auto max-h-[70vh] px-2 py-4 scrollbar-hide">
           <FeatureCard
             icon={Users}
             title={t('landing.features.cards.peopleFirst.title')}

@@ -4,9 +4,12 @@ import { healthHubService } from '../services/core/HealthHubService';
 import { PatientProfileCard } from '../components/healthhub/Profile/PatientProfileCard';
 import { HealthTimeline } from '../components/healthhub/Timeline/HealthTimeline';
 import { DocumentManager } from '../components/healthhub/Documents/DocumentManager';
+import { WellnessCenter } from '../components/healthhub/Wellness/WellnessCenter';
 import DummyReport from '../components/healthhub/Reports/DummyReport';
+import { cn } from '../utils/cn';
 
-type Tab = 'timeline' | 'documents' | 'access' | 'reports';
+
+type Tab = 'timeline' | 'documents' | 'access' | 'reports' | 'wellness';
 
 const HealthHubPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('timeline');
@@ -100,7 +103,7 @@ const HealthHubPage: React.FC = () => {
         </div>
 
         <div className="flex border-b border-slate-200 gap-8">
-          {(['timeline', 'documents', 'access', 'reports'] as Tab[]).map((tab) => (
+          {(['timeline', 'documents', 'access', 'reports', 'wellness'] as Tab[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -133,6 +136,10 @@ const HealthHubPage: React.FC = () => {
 
           {activeTab === 'documents' && (
             <DocumentManager documents={documents} onUpload={handleUpload} />
+          )}
+
+          {activeTab === 'wellness' && (
+            <WellnessCenter />
           )}
 
           {activeTab === 'access' && (

@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { LandingPage } from './Pages/LandingPage';
 import { PrototypeGallery } from './Pages/PrototypeGallery';
+import { BiomedBERTPage } from './Pages/BiomedBERTPage';
+import HealthHubPage from './Pages/HealthHubPage';
+import ProviderHubPage from './Pages/ProviderHubPage';
+import CopilotPage from './Pages/CopilotPage';
+import AdminDashboardPage from './Pages/AdminDashboardPage';
+import ClinicalWorkspacePage from './Pages/ClinicalWorkspacePage';
 import { PatientRegistrationScreen } from './components/registration/PatientRegistrationScreen';
 import { ScreeningScreen } from './components/registration/ScreeningScreen';
 import { TriageScreen } from './components/registration/TriageScreen';
@@ -13,7 +19,7 @@ import { DistrictDashboard } from './components/dashboard/DistrictDashboard';
 import { MobileFrame } from './components/layout/MobileFrame';
 import { cn } from './utils/cn';
 
-type AppView = 'landing' | 'gallery' | 'patient' | 'worker' | 'admin' | 'screening' | 'triage' | 'referral' | 'appointment' | 'teleconsultation' | 'careplan';
+type AppView = 'landing' | 'gallery' | 'patient' | 'worker' | 'admin' | 'screening' | 'triage' | 'referral' | 'appointment' | 'teleconsultation' | 'careplan' | 'biomedbert' | 'healthhub' | 'providerhub' | 'copilot' | 'clinical';
 
 function App() {
   const [view, setView] = useState<AppView>('landing');
@@ -61,6 +67,8 @@ function App() {
 
         {view === 'gallery' && <PrototypeGallery />}
 
+        {view === 'biomedbert' && <BiomedBERTPage />}
+
         {view === 'patient' && (
           <div className="flex items-center justify-center min-h-screen p-4">
             <MobileFrame>
@@ -68,6 +76,8 @@ function App() {
                 onNavigate={(v) => {
                   if (v === 'appointments') setView('teleconsultation');
                   else if (v === 'registration') setView('worker');
+                  else if (v === 'health-hub') setView('healthhub');
+                  else if (v === 'providers') setView('providerhub');
                   else alert(`${v} is coming soon!`);
                 }}
               />
@@ -142,8 +152,32 @@ function App() {
         )}
 
         {view === 'admin' && (
-          <div className="w-full h-screen">
-            <DistrictDashboard />
+          <div className="w-full h-screen overflow-auto">
+            <AdminDashboardPage />
+          </div>
+        )}
+
+        {view === 'healthhub' && (
+          <div className="w-full h-screen overflow-auto">
+            <HealthHubPage />
+          </div>
+        )}
+
+        {view === 'providerhub' && (
+          <div className="w-full h-screen overflow-auto">
+            <ProviderHubPage />
+          </div>
+        )}
+
+        {view === 'copilot' && (
+          <div className="w-full h-screen overflow-hidden">
+            <CopilotPage />
+          </div>
+        )}
+
+        {view === 'clinical' && (
+          <div className="w-full h-screen overflow-auto">
+            <ClinicalWorkspacePage />
           </div>
         )}
 
@@ -154,6 +188,11 @@ function App() {
           <button onClick={() => setView('patient')} className="px-2 py-1 bg-black text-white text-[10px] rounded">Patient</button>
           <button onClick={() => setView('worker')} className="px-2 py-1 bg-black text-white text-[10px] rounded">Worker</button>
           <button onClick={() => setView('admin')} className="px-2 py-1 bg-black text-white text-[10px] rounded">Admin</button>
+          <button onClick={() => setView('biomedbert')} className="px-2 py-1 bg-black text-white text-[10px] rounded">BiomedBERT</button>
+          <button onClick={() => setView('healthhub')} className="px-2 py-1 bg-black text-white text-[10px] rounded">HealthHub</button>
+          <button onClick={() => setView('providerhub')} className="px-2 py-1 bg-black text-white text-[10px] rounded">ProviderHub</button>
+          <button onClick={() => setView('copilot')} className="px-2 py-1 bg-black text-white text-[10px] rounded">Copilot</button>
+          <button onClick={() => setView('clinical')} className="px-2 py-1 bg-black text-white text-[10px] rounded">Clinical</button>
         </div>
       </div>
   );

@@ -7,7 +7,7 @@ function cn(...inputs: ClassValue[]) {
 }
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'default';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
 }
@@ -26,6 +26,8 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: 'bg-secondary text-white shadow-lg shadow-secondary/20 hover:opacity-90 active:scale-95',
     outline: 'border-2 border-primary text-primary hover:bg-primary-light active:scale-95',
     ghost: 'text-slate-600 hover:bg-slate-100 active:scale-95',
+    destructive: 'bg-red-600 text-white hover:bg-red-700 active:scale-95',
+    default: 'bg-blue-600 text-white hover:bg-blue-700 active:scale-95',
   };
 
   const sizes = {

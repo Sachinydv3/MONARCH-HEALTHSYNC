@@ -1,0 +1,173 @@
+import { apiClient } from '../api/apiClient';
+import { MedicalRecord, HealthDocument } from '../../types';
+
+export interface CopilotResponse {
+  answer: string;
+  citations: Citation[];
+  confidence: 'HIGH' | 'MEDIUM' | 'LOW';
+  isDraft: boolean;
+  safetyWarning?: string;
+  predictiveInsights?: PredictiveInsight[];
+}
+
+export interface Citation {
+  id: string;
+  sourceName: string;
+  date: string;
+  snippet: string;
+  type: 'RECORD' | 'DOCUMENT';
+}
+
+export interface PredictiveInsight {
+  id: string;
+  title: string;
+  description: string;
+  severity: 'INFO' | 'WARNING' | 'CRITICAL';
+  evidence: string[];
+  recommendation: string;
+  confidence: number;
+  category: 'Predictive' | 'Diagnostic' | 'Preventive';
+}
+
+/**
+ * CopilotService implements the RAG (Retrieval Augmented Generation)
+ * logic for Monarch HealthSync. It ensures AI answers are grounded
+ * in the patient's actual medical history.
+ */
+class CopilotService {
+  /**
+   * Asks the AI Copilot a question about a patient.
+   */
+  async askQuestion(patientId: string, query: string): Promise<CopilotResponse> {
+    console.log(`[CopilotService] Processing query: "${query}" for patient ${patientId}`);
+
+    // 1. Retrieve relevant context (The "R" in RAG)
+    const context = await this.getRelevantContext(patientId, query);
+
+    // 2. Simulate LLM processing of the context
+    return this.simulateLLM(query, context);
+  }
+
+  /**
+   * Simulates the retrieval of medical records and documents relevant to the query.
+   */
+  private async getRelevantContext(patientId: string, query: string) {
+    const records = await apiClient.request<MedicalRecord[]>('health-hub', 'timeline', 'GET', { patientId, types: [] });
+    const documents = await apiClient.request<HealthDocument[]>('health-hub', 'documents', 'GET', { patientId });
+
+    return { records, documents };
+  }
+
+  /**
+   * Simulates the LLM generating a response based on provided context.
+   * Adheres to AI Safety requirements: GROUNDING, CITATIONS, and UNCERTAINTY.
+   */
+  private simulateLLM(query: string, context: { records: MedicalRecord[], documents: HealthDocument[] }): CopilotResponse {
+    const q = query.toLowerCase();
+
+    // Scenario 1: Glucose/Diabetes Question
+    if (q.includes('glucose') || q.includes('diabetes') || q.includes('hba1c')) {
+      const glucoseRecord = context.records.find(r => r.summary.includes('Glucose'));
+      if (glucoseRecord) {
+        return {
+          answer: `Based on the medical records, the patient's Blood Glucose was 140 mg/dL on ${glucoseRecord.date}, which is indicated as elevated.`,
+          citations: [{
+            id: glucoseRecord.id,
+            sourceName: glucoseRecord.provider,
+            date: glucoseRecord.date,
+            snippet: glucoseRecord.summary,
+            type: 'RECORD'
+          }],
+          confidence: 'HIGH',
+          isDraft: true,
+          predictiveInsights: [
+            {
+              id: 'pi-1',
+              title: 'Progression Risk',
+              description: 'Patient shows a rising trend in HbA1c over the last 3 quarters, indicating current treatment may need adjustment.',
+              severity: 'WARNING',
+              evidence: ['Lab Report Oct 20', 'Lab Report July 20', 'Lab Report Apr 20'],
+              recommendation: 'Consider adjusting Metformin dosage or introducing a second-line agent.',
+              confidence: 0.88,
+              category: 'Predictive'
+            }
+          ]
+        };
+      }
+    }
+
+    // Scenario 2: X-Ray/Imaging Question
+    if (q.includes('x-ray') || q.includes('chest') || q.includes('imaging')) {
+      const xray = context.records.find(r => r.type === 'IMAGING');
+      if (xray) {
+        return {
+          answer: `The Chest X-Ray performed on ${xray.date} showed normal lung fields with no signs of cardiomegaly.`,
+          citations: [{
+            id: xray.id,
+            sourceName: xray.provider,
+            date: xray.date,
+            snippet: xray.summary,
+            type: 'RECORD'
+          }],
+          confidence: 'HIGH',
+          isDraft: true,
+          predictiveInsights: [
+            {
+              id: 'pi-2',
+              title: 'Preventive Screening',
+              description: 'Patient is eligible for annual low-dose CT screening based on age and smoking history in records.',
+              severity: 'INFO',
+              evidence: ['Patient Profile - Age 55+', 'Clinical Note - Smoking History'],
+              recommendation: 'Schedule low-dose CT scan for early detection.',
+              confidence: 0.92,
+              category: 'Preventive'
+            }
+          ]
+        };
+      }
+    }
+
+    // Scenario 3: Prescription Question
+    if (q.includes('medication') || q.includes('prescription') || q.includes('metformin')) {
+      const rx = context.records.find(r => r.type === 'PRESCRIPTION');
+      if (rx) {
+        return {
+          answer: `The patient was started on Metformin 500mg on ${rx.date} following a consultation with Dr. Sharma.`,
+          citations: [{
+            id: rx.id,
+            sourceName: rx.provider,
+            date: rx.date,
+            snippet: rx.summary,
+            type: 'RECORD'
+          }],
+          confidence: 'HIGH',
+          isDraft: true,
+          predictiveInsights: [
+            {
+              id: 'pi-3',
+              title: 'Drug Interaction Alert',
+              description: 'Potential mild interaction detected between Metformin and current over-the-counter supplements reported by patient.',
+              severity: 'WARNING',
+              evidence: ['Patient-reported Supplements', 'Prescription Record'],
+              recommendation: 'Verify current supplement use during next visit.',
+              confidence: 0.75,
+              category: 'Diagnostic'
+            }
+          ]
+        };
+      }
+    }
+
+    // Default: Uncertainty Handling (Required by AI Safety Specs)
+    return {
+      answer: "I cannot find specific information in the patient's authorized records to answer this question accurately. Please review the original documents or perform a new clinical assessment.",
+      citations: [],
+      confidence: 'LOW',
+      isDraft: true,
+      safetyWarning: "No grounded evidence found in records.",
+      predictiveInsights: []
+    };
+  }
+}
+
+export const copilotService = new CopilotService();

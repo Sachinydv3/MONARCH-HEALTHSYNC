@@ -77,12 +77,12 @@ export const DistrictDashboard: React.FC = () => {
         <header className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-6">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">District Dashboard - Maharashtra</h1>
+              <h1 className="text-2xl font-bold text-slate-900">District Dashboard - India</h1>
               <p className="text-slate-500 text-sm">Real-time healthcare metrics for the district</p>
             </div>
             <div className="h-8 w-px bg-slate-200" />
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Govt of Maharashtra</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Govt of India</span>
             </div>
           </div>
           <div className="flex items-center gap-3">
